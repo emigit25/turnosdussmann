@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reporte de Turnos</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <!-- <link rel="stylesheet" href="https://emigit25.github.io/dusmmann2/styles.css"/>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>-->
+</head>
+<body>
+
+<div class="main">
+    <div class="container">
+        <div>
+            <img src="https://emigit25.github.io/dusmmann2/DUSSMANN.png" class="logo">
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="content" >
+            <h1 class="hospital-title">OSPEDALE CARATE BRIANZA</h1>
+            <h2 class="week-title">TURNI SETTIMANALE</h2>
+            <div class="divider"></div> <!-- Línea roja divisoria -->
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="sidebar">
+            <img src="https://emigit25.github.io/dusmmann2/test2@test.com.PHOTO.105159.jpg">
+            <h2>Maritza Hoyos</h2>
+        </div>
+
+
+        <div class="content">
+            <!-- <div id="turnos-data" style="display: none;">&lt;&lt;[Turni Settimanali]&gt;&gt;</div>-->
+            <table id="tabla-turnos">
+
+                <!-- *************************** DIA LUNES *************************************** -->
+                
+                <thead>
+                <tr>
+                    <th colspan="4">Lunedì</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="30%">Dalle 00:00 alle 23:59</td>
+                    <td colspan="2"> Nessuna Programazione </td>
+                </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+<button class="export-btn" onclick="exportarPDF()">📄 Exportar PDF</button>
+
+<script>
+    const contenido = document.getElementById("turnos-data").innerText;
+    const filas = contenido.includes("\n") ? contenido.split("\n") : contenido.split(",");
+    const cuerpo = document.querySelector("#tabla-turnos tbody");
+    filas.forEach(fila => {
+      const [hora] = fila.split(" , ");
+      if (hora) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = '<td>${hora.trim()}</td>';
+        cuerpo.appendChild(tr);
+      }
+    });
+</script>
+
+</body>
+</html>
